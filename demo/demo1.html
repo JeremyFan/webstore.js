@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>demo1</title>
+    <!--引入封装好的文件-->
+    <script src="scripts/jquery-1.10.2.min.js"></script>
+    <script src="webstore.js"></script>
+    <style>
+        html { font: 14px Tahoma,Helvetica,Arial; }
+        .title { padding: 15px; background: #eee; }
+    </style>
+</head>
+<body>
+    <p class="title">这个demo显示当前浏览器的webstore.get()和webstore.set()方法</p>
+    <dl>
+        <dt>webstore.get</dt>
+        <dd id="g"></dd>
+        <dt>webstore.set</dt>
+        <dd id="s"></dd>
+    </dl>
+    <script>
+        document.getElementById('g').innerHTML = webstore.get.toString();
+        document.getElementById('s').innerHTML = webstore.set.toString();
+    </script>
+</body>
+</html>

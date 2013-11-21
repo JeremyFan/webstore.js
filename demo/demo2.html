@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>demo2</title>
+    <script src="scripts/jquery-1.10.2.min.js"></script>
+    <script src="scripts/jquery.json-2.4.min.js"></script>
+    <script src="webstore.js"></script>
+    <style>
+        html { font: 14px Tahoma,Helvetica,Arial; }
+        .title { padding: 15px; background: #eee; }
+        div#al { border: 1px solid #000; width: 500px; }
+        .al-head { text-align: center; line-height: 2em; font-weight: bolder; }
+        .al-row { line-height: 2em; border-top: 1px solid #000; }
+        .al-cell { display: inline-block; padding-left: 10px; width: 200px; border-left: 1px solid black; }
+        .first-child { width: 50px; border: none; }
+    </style>
+</head>
+<body>
+    <p class="title">
+        这个demo展示了一个使用webstore.js实现本地存储的实例，兼容各浏览器（PS: the Beatles的《Abbey Road》是一条写在html里的原始数据）
+    </p>
+    <label>Album: </label>
+    <input type="text" id="txtName" />
+    <label>Artist: </label>
+    <input type="text" id="txtArtist" />
+    <input type="button" id="add" value="添加" />
+    <hr />
+    <div id='al'>
+        <div class='al-head'>专辑列表</div>
+        <div class="al-row">
+            <span class="al-cell first-child">1</span><span class="al-cell">Abbey Road</span><span class="al-cell">the Beatles</span>
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            bindAlbumList(albumlist);
+            bindBtnEvent();
+        });
+
+        // 通过webstore.get()方法获取数据
+        var albumlist = $.parseJSON(webstore.get('albumlist')) || [];
+        function bindBtnEvent() {
+            $('#add').bind('click', function () {
+                var id = $('#txtId').val();
+                var name = $('#txtName').val();
+                var artist = $('#txtArtist').val();
+
+                var album = new Album(name, artist);
+                albumlist.push(album);
+                // 通过webstore.set()方法保存数据
+                webstore.set('albumlist', $.toJSON(albumlist));
+
+                bindAlbumList(albumlist);
+            });
+        }
+
+        // Album类
+        function Album(name, artist) {
+            this.Name = name;
+            this.Artist = artist;
+        }
+
+        // 绑定专辑列表
+        function bindAlbumList(albumlist) {
+            if ($('.al-row').length > 1) {
+                while ($('.al-row')[1])
+                    $('.al-row')[1].remove();
+            }
+            for (var i in albumlist) {
+                var album = albumlist[i];
+                var row = $('<div class="al-row"></div>');
+                var span1 = $('<span class="al-cell first-child">' + parseInt(parseInt(i) + 2) + '</span>'),
+                    span2 = $('<span class="al-cell">' + (album.Name||'null') + '</span>'),
+                    span3 = $('<span class="al-cell">' + (album.Artist||'null') + '</span>');
+                row.append(span1, span2, span3);
+                $('#al').append(row);
+            }
+        }
+    </script>
+</body>
+</html>
