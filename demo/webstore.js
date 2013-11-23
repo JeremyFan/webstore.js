@@ -3,21 +3,21 @@
     var set, get;
 
     // 支持localStorage的浏览器
-    if (typeof window.localStorage == 'object') {
-        set = function (key, value) {
-            window.localStorage.setItem(key, value);
-        };
-        get = function (key) {
-            return window.localStorage.getItem(key);
-        };
-    }
+    // if (typeof window.localStorage == 'object') {
+    //     set = function (key, value) {
+    //         window.localStorage.setItem(key, value);
+    //     };
+    //     get = function (key) {
+    //         return window.localStorage.getItem(key);
+    //     };
+    // }
         // 支持addBehavior的浏览器
-    else if (typeof window.document.documentElement.addBehavior == 'object') {
+    if (typeof window.document.documentElement.addBehavior == ('object'||'function')) {
         // 存储空间名
         var storespace = 'StoreSpace';
-        var getStore = function () {
+        var setStore = function () {
             if (window.store)
-                return window.store;
+                return;
             // 创建存储元素
             var store = document.createElement('div');
             window.document.body.appendChild(store);
@@ -25,18 +25,18 @@
             // 把store添加到window
             window.store = store;
 
-            return window.store;
+            return;
         }
 
         set = function (key, value) {
-            var store = getStore();
+            setStore();
             // 写入数据
             store.setAttribute(key, value);
             // 保存到storespace
             store.save(storespace);
         };
         get = function (key) {
-            var store = getStore();
+            setStore();
             // 获取storespace中的所有数据
             store.load(storespace);
             // 读取指定数据

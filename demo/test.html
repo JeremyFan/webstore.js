@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>test1</title>
+    <script src="webstore.js"></script>
+    <script src="script/jquery-1.10.2.min.js"></script>
+</head>
+<body>
+    <p>test1</p>
+    <input type="button" id="test" value="开始（不同空间）" />
+    <input type="button" id="test2" value="开始（同一空间）" />
+   
+    <script>
+        /// 测试存储在单一空间
+        var s = '',
+            a = 'aaaaaaaaaa';
+
+        $('#test2').bind('click', function () {
+            debugger;
+            while (true) {
+                s += a;
+                webstore.set('SpaceX', 'A', s);
+                console.log(s.length);
+            }
+        });
+
+        /*
+        /// 测试存在不同的空间
+        var key = 'a',
+            space = 'space' + key,
+            n = key.charCodeAt(0),
+            addStr = 'AAAAAaaaaa',
+            savaStr = '';
+        $('#test').bind('click', function () {
+            debugger;
+            while (true) {
+                while (savaStr.length < 100000) {
+                    savaStr += addStr;
+                    webstore.set(space, key, savaStr);
+                    console.log(key, savaStr.length);
+                }
+
+                key = String.fromCharCode(++n);
+                space = 'space' + key;
+                savaStr = '';
+            }
+        });
+*/
+
+    </script>
+</body>
+</html>
