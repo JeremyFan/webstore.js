@@ -16,13 +16,13 @@
         var s = '';
         var a = 'aaaaaaaaaa';
         $('#test2').bind('click', function () {
-            //debugger;
             while (true) {
                 s += a;
                 try {
                     webstore.set('KeyA', s);
                 }
                 catch (e) {
+                    debugger;
                     alert(webstore.get('KeyA').length);
                     break;
                 }
