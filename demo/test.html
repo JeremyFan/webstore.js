@@ -13,17 +13,16 @@
    
     <script>
         // userData测试（ie6）
-        var s = '';
+        var s = 'a';
         var a = 'aaaaaaaaaa';
         $('#test2').bind('click', function () {
             while (true) {
-                s += a;
+                s += s;
                 try {
                     webstore.set('KeyA', s);
+                    alert(webstore.get('KeyA').length);
                 }
                 catch (e) {
-                    debugger;
-                    alert(webstore.get('KeyA').length);
                     break;
                 }
             }
