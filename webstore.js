@@ -15,28 +15,26 @@
     else if (typeof window.document.documentElement.addBehavior == 'object') {
         // 存储空间名
         var storespace = 'StoreSpace';
-        var getStore = function () {
+        var setStore = function () {
             if (window.store)
-                return window.store;
+                return;
             // 创建存储元素
             var store = document.createElement('div');
             window.document.body.appendChild(store);
             store.addBehavior('#default#userData');
             // 把store添加到window
             window.store = store;
-
-            return window.store;
         }
 
         set = function (key, value) {
-            var store = getStore();
+            setStore();
             // 写入数据
             store.setAttribute(key, value);
             // 保存到storespace
             store.save(storespace);
         };
         get = function (key) {
-            var store = getStore();
+            getStore();
             // 获取storespace中的所有数据
             store.load(storespace);
             // 读取指定数据
