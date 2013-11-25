@@ -3,16 +3,16 @@
     var set, get;
 
     // 支持localStorage的浏览器
-    if (typeof window.localStorage == 'object') {
-        set = function(key, value) {
-            window.localStorage.setItem(key, value);
-        };
-        get = function(key) {
-            return window.localStorage.getItem(key);
-        };
-    }
+    // if (typeof window.localStorage == 'object') {
+    //     set = function(key, value) {
+    //         window.localStorage.setItem(key, value);
+    //     };
+    //     get = function(key) {
+    //         return window.localStorage.getItem(key);
+    //     };
+    // }
     // 支持addBehavior的浏览器
-    else if (typeof window.document.documentElement.addBehavior == 'object') {
+    if (typeof window.document.documentElement.addBehavior == 'object') {
         // 存储空间名
         var storespace = 'StoreSpace';
         var setStore = function() {
