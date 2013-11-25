@@ -12,15 +12,22 @@
     <input type="button" id="test2" value="开始（同一空间）" />
    
     <script>
-        /// 测试存储在单一空间
-        var s = '',
-            a = 'aaaaaaaaaa';
-
+        var s = '';
+        var a = 'aaaaaaaaaa';
         $('#test2').bind('click', function () {
+            //debugger;
             while (true) {
                 s += a;
-                webstore.set('KeyA', s);
-                console.log(s.length);
+                try {
+                    webstore.set('KeyA', s);
+                }
+                catch (e) {
+                    alert(webstore.get('KeyA').length);
+                    break;
+                }
+                finally {
+                    console.log(webstore.get('KeyA').length);
+                }
             }
         });
 
