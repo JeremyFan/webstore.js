@@ -15,7 +15,6 @@
         var s = '';
         var a = 'aaaaaaaaaa';
         $('#test2').bind('click', function () {
-            //debugger;
             while (true) {
                 s += a;
                 try {
@@ -23,10 +22,6 @@
                 }
                 catch (e) {
                     alert(webstore.get('KeyA').length);
-                    break;
-                }
-                finally {
-                    console.log(webstore.get('KeyA').length);
                 }
             }
         });
