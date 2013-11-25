@@ -17,13 +17,11 @@
             a = 'aaaaaaaaaa';
 
         $('#test2').bind('click', function () {
-            debugger;
             while (true) {
                 s += a;
                 webstore.set('SpaceX', 'A', s);
-                // console.log(s.length);
+                console.log(s.length);
             }
-            alert(s.length);
         });
 
         /// 测试存在不同的空间
@@ -33,7 +31,6 @@
             addStr = 'AAAAAaaaaa',
             savaStr = '';
         $('#test').bind('click', function () {
-            debugger;
             while (true) {
                 while (savaStr.length < 100000) {
                     savaStr += addStr;
