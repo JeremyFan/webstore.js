@@ -16,5 +16,5 @@ webstore.js目前提供两个方法，分别用于存/取数据
           
 
 ###展示###
-<a href="http://jeremyfan.github.io/webstore.js">0.0去看看</a>
+<a href="http://jeremyfan.github.io/webstore.js">去看看</a>
 
