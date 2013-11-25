@@ -26,19 +26,27 @@
             window.store = store;
         }
 
-        set = function (key, value) {
-            setStore();
-            // 写入数据
-            store.setAttribute(key, value);
-            // 保存到storespace
-            store.save(storespace);
+        set = function(key, value) {
+            try {
+                setStore();
+                // 写入数据
+                store.setAttribute(key, value);
+                // 保存到storespace
+                store.save(storespace);
+            } catch (error) {
+                alert(error.message);
+            }
         };
-        get = function (key) {
-            getStore();
-            // 获取storespace中的所有数据
-            store.load(storespace);
-            // 读取指定数据
-            return store.getAttribute(key);
+        get = function(key) {
+            try {
+                getStore();
+                // 获取storespace中的所有数据
+                store.load(storespace);
+                // 读取指定数据
+                return store.getAttribute(key);
+            } catch (error) {
+                alert(error.message);
+            }
         };
 
     }
