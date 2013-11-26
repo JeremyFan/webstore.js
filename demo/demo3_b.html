@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>demo3</title>
+    <script src="webstore.js"></script>
+    <style>
+        html { font: 14px Tahoma,Helvetica,Arial; }
+        .title { padding: 15px; background: #eee; }
+        .pathmap span{display:block;}
+    </style>
+</head>
+<body>
+    <p class="title">这个demo用于测试webstore.js存储的数据页面间共享的情况。（这是b页面，路径：demo/demo3_b.html）</p>
+    <p class='pathmap'>
+        <span style='padding-left:20px;'> - - demo<span>
+        <span style='padding-left:30px;'> - - demo3_a</span>
+        <span style='padding-left:30px;'> - - demo3_b</span>
+        <span style='padding-left:30px;'> - - folder</span>
+        <span style='padding-left:60px;'> - - demo3_c</span>
+    </p>
+    <input type='text' id='tt'>
+    <input type='button' id='btn' value='取值'>
+
+    <p><a href='demo3_a.html'>去a页面</a><p>
+    <p><a href='folder/demo3_c.html'>去c页面</a><p>
+
+    <script>
+    var button=document.getElementById('btn');
+    button.onclick=function(){
+        var value = webstore.get('demo3_value');
+        if(value==null)
+            return;
+        document.getElementById('tt').value=value;
+    }
+    </script>
+</body>
+</html>
