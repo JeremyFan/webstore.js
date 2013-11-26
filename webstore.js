@@ -33,7 +33,7 @@
             store.save(storespace);
         };
         get = function(key) {
-            getStore();
+            setStore();
             // 获取storespace中的所有数据
             store.load(storespace);
             // 读取指定数据
